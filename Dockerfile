@@ -20,7 +20,11 @@ RUN echo "tvheadend tvheadend/admin_username string admin" | sudo debconf-set-se
 RUN apt-get update && apt-get install -y tvheadend
 
 # Port for HDHR discovery
-EXPOSE 65001
+#EXPOSE 65001
+
+#Install Firmware for  1b80:e1cc
+RUN wget http://palosaari.fi/linux/v4l-dvb/firmware/DRX39xyK/dvb-demod-drxk-01.fw -O /lib/firmware/dvb-demod-drxk-01.fw
+
 
 # Configure HDHomeRun
 # discover and config hdhomerun
