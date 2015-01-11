@@ -7,7 +7,7 @@ It also will present the web interface to the user to scan and configure channel
 
 
 ```
-mkdir -p /opt/hts
+mkdir -p /opt/docker-tvheadend-config
 ```
 
 Build with
