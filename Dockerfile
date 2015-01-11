@@ -21,4 +21,4 @@ RUN chmod +x /root/start.sh
 EXPOSE 9981 9982
 
 #CMD ["/usr/bin/tvheadend", "-u", "hts", "-g", "video", "-C"]
-CMD ["/root/start.sh"]
+CMD ["/usr/sbin/service", "tvheadend", "start"]
