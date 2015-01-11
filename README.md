@@ -19,7 +19,7 @@ docker build -t tvheadend .
 run with
 
 ```
-docker run -d -p 9981:9981 -v=/opt/docker-tvheadend-config:/home/hts --device=/dev/dvb/adapter0 tvheadend
+docker run -d -p 9981:9981 -v=/opt/docker-tvheadend-config:/home/hts --device=/dev/dvb/adapter0/dvr0:/dev/dvb/adapter0/dvr0 tvheadend
 ```
 
 *WARNING* security is set to be non-existant on the web interface. Logging in requires no username or password.
