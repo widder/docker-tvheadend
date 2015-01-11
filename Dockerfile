@@ -6,35 +6,16 @@ MAINTAINER Justin Garrison <justinleegarrison@gmail.com>
 
 # Install software and repos
 RUN apt-get update && apt-get install -m -y git curl software-properties-common python-software-properties debconf-utils\
-    dpkg-dev cmake dkms linux-headers-$(uname -r) build-essential module-assistant supervisor debhelper
-#RUN apt-get install -y hdhomerun-config libhdhomerun-dev debhelper
+    dpkg-dev cmake dkms linux-headers-$(uname -r) build-essential module-assistant supervisor
+RUN apt-get install -y debhelper
 RUN curl http://apt.tvheadend.org/repo.gpg.key | sudo apt-key add -
 RUN echo "deb http://apt.tvheadend.org/stable trusty main" > /etc/apt/sources.list.d/tvheadend.list
 
 RUN apt-add-repository http://apt.tvheadend.org/stable
-RUN cd /usr/src && git clone https://github.com/h0tw1r3/dvbhdhomerun; \
-    cd /usr/src/dvbhdhomerun && dpkg-buildpackage; \
-    cd /usr/src; dpkg -i dvbhdhomerun-*.deb
-RUN echo "tvheadend tvheadend/admin_password password 1234" | sudo debconf-set-selections
-RUN echo "tvheadend tvheadend/admin_username string admin" | sudo debconf-set-selections
 RUN apt-get update && apt-get install -y tvheadend
 
-# Port for HDHR discovery
-#EXPOSE 65001
-
-#Install Firmware for  1b80:e1cc
-RUN wget http://palosaari.fi/linux/v4l-dvb/firmware/DRX39xyK/dvb-demod-drxk-01.fw -O /lib/firmware/dvb-demod-drxk-01.fw
-
-
-# Configure HDHomeRun
-# discover and config hdhomerun
-#RUN echo "["$(hdhomerun_config discover | cut -d ' ' -f 3)"]" | sudo tee /etc/dvbhdhomerun
-#RUN echo "tuner_type=ATSC" >> /etc/dvbhdhomerun
-
-RUN mkdir -p /var/log/supervisor 
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Ports for Tvheadend service/web
 EXPOSE 9981 9982
 
-CMD ["/usr/bin/supervisord"]
+CMD ["/usr/bin/tvheadend", "-u", "hts", "-g", "video", "-C"]
