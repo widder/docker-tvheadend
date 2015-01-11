@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-MAINTAINER Justin Garrison <justinleegarrison@gmail.com>
+MAINTAINER widder <widder512@yahoo.de>
 
 # Install repos and packages
 # RUN apt-get -y upgrade
