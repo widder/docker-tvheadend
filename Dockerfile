@@ -15,6 +15,7 @@ RUN apt-add-repository http://apt.tvheadend.org/stable
 RUN apt-get update && apt-get install -y tvheadend
 
 ADD start.sh /root/start.sh
+RUN chmod +x /root/start.sh
 
 # Ports for Tvheadend service/web
 EXPOSE 9981 9982
