@@ -11,6 +11,8 @@ RUN apt-get install -y debhelper
 RUN curl http://apt.tvheadend.org/repo.gpg.key | sudo apt-key add -
 RUN echo "deb http://apt.tvheadend.org/stable trusty main" > /etc/apt/sources.list.d/tvheadend.list
 
+RUN apt-get -y install daemontools daemontools-run
+
 RUN apt-add-repository http://apt.tvheadend.org/stable
 RUN apt-get update && apt-get install -y tvheadend
 
