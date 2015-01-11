@@ -14,12 +14,12 @@ RUN echo "deb http://apt.tvheadend.org/stable trusty main" > /etc/apt/sources.li
 RUN apt-add-repository http://apt.tvheadend.org/stable
 RUN apt-get update && apt-get install -y tvheadend
 
-ADD start /root/start
-RUN chmod +x /root/start
+ADD start.sh /root/start.sh
+RUN chmod +x /root/start.sh
 
 # Ports for Tvheadend service/web
 EXPOSE 9981 9982
 
 #CMD ["/usr/bin/tvheadend", "-u", "hts", "-g", "video", "-C"]
 #CMD ["/usr/sbin/service", "tvheadend", "start"]
-CMD ["/root/start"]
+CMD ["/root/start.sh"]
